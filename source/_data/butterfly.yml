@@ -25,11 +25,11 @@ theme_color:
 menu:
   首页: /||fa fa-home
   时间轴: /archives/||fa fa-archive
-  标签: /tags/||fa fa-tags
-  分类: /categories/||fa fa-folder-open
-  留言板: /messageboard/||fa fa-coffee
-  友链: /link/||fa fa-link
-  关于: /about/||fa fa-heart
+  # 标签: /tags/||fa fa-tags
+  # 分类: /categories/||fa fa-folder-open
+  # 留言板: /messageboard/||fa fa-coffee
+  # 友链: /link/||fa fa-link
+  # 关于: /about/||fa fa-heart
 
 
 # Favicon
@@ -142,21 +142,21 @@ cdn:
 # Post info settings
 # ---------------
 # avatar: /img/avatar.png
-avatar: images/avatar.jpg
+avatar: /images/avatar.png
 
 # the banner image of index
 # if the banner of another page not setting,it will show the top_img
-top_img: images/bg.jpg
+top_img: /images/bg.jpg
 
 #the banner image of post
 # if the post not set the post cover and post top image, it will show it
-post_img: images/post.jpg
+post_img: /images/post.jpg
 
 # the default cover of the post
-default_cover: images/default_cover.jpg
+default_cover: /images/default_cover.jpg
 
 # the banner image of archive page
-archive_img: images/archive.jpg
+archive_img: /images/archive.jpg
 
 # if the photo link cannot connect,it will show that
 lodding_bg:
@@ -302,7 +302,7 @@ Flink:
   info_headline: 我的Blog資料
   name: Blog 名字： Vallzey
   address: Blog 地址： https://vallzey.github.io/
-  avatar: Blog 頭像： image/avatar.png
+  avatar: Blog 頭像： /images/avatar.png
   info: Blog 簡介： 今日事,今日畢
   comment: 如果需要交換友鏈,請留言
 
