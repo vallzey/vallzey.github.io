@@ -101,3 +101,6 @@ search:
   path: search.xml
   field: post
   content: true
+
+aplayer:
+  meting: true
