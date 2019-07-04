@@ -96,3 +96,8 @@ offline:
       handler: cacheFirst
       options:
         origin: https://vallzey.github.io/ # 可替換成你的 url
+
+search:
+  path: search.xml
+  field: post
+  content: true
