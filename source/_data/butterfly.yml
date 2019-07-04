@@ -25,7 +25,7 @@ theme_color:
 menu:
   首页: /||fa fa-home
   时间轴: /archives/||fa fa-archive
-  # 标签: /tags/||fa fa-tags
+  标签: /tags/||fa fa-tags
   # 分类: /categories/||fa fa-folder-open
   # 留言板: /messageboard/||fa fa-coffee
   # 友链: /link/||fa fa-link
@@ -39,15 +39,15 @@ favicon: /img/favicon.ico
 # PWA
 # See https://github.com/JLHwung/hexo-offline
 # ---------------
-# pwa:
-#   enable: true
-#   manifest: /img/pwa/manifest.json
-#   theme_color: "#fff"
-#   apple_touch_icon: /img/pwa/apple-touch-icon.png
-#   favicon_32_32: /img/pwa/32.png
-#   favicon_16_16: /img/pwa/16.png
-#   mask_icon: /img/pwa/safari-pinned-tab.svg
-#   shortcut_icon: /img/favicon.ico
+pwa:
+  enable: true
+  manifest: /img/pwa/manifest.json
+  theme_color: "#fff"
+  apple_touch_icon: /img/pwa/apple-touch-icon.png
+  favicon_32_32: /img/pwa/32.png
+  favicon_16_16: /img/pwa/16.png
+  mask_icon: /img/pwa/safari-pinned-tab.svg
+  shortcut_icon: /img/favicon.ico
 
 
 # Highlight theme
@@ -153,7 +153,8 @@ top_img: /images/bg.jpg
 post_img: /images/post.jpg
 
 # the default cover of the post
-default_cover: /images/default_cover.jpg
+# default_cover: /images/default_cover.jpg
+default_cover: /images/notebook.png
 
 # the banner image of archive page
 archive_img: /images/archive.jpg
@@ -171,7 +172,7 @@ post_meta:
 
 # Please see doc for more details: https://jerryc.me/posts/21cfbf15/#字数统计
 wordcount:
-  enable: false
+  enable: true
 
 toc:
   enable: true
