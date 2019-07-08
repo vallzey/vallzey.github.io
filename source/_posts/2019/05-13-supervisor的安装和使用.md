@@ -6,6 +6,8 @@ tags:
 categories:
   - 系统命令
 date: 2019-05-13 20:09:22
+updated: 2019-05-13 20:09:22
+top: true
 ---
 
 ### 安装

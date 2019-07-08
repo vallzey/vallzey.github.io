@@ -5,6 +5,8 @@ tags:
 categories:
   - Java
 date: 2019-02-05 20:00:53
+updated: 2019-02-05 20:00:53
+
 ---
 [ASM](https://asm.ow2.io/)([Download](https://repository.ow2.org/nexus/content/repositories/releases/org/ow2/asm/asm-all/6.0_BETA/asm-all-6.0_BETA.jar))是一个字节码分析及修改框架。它被广泛应用于许多项目之中，例如 Groovy、Kotlin 的编译器，代码覆盖测试工具 Cobertura、JaCoCo，以及各式各样通过字节码注入实现的程序行为监控工具。甚至是 Java 8 中 Lambda 表达式的适配器类，也是借助 ASM 来动态生成的。
 

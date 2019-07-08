@@ -5,6 +5,7 @@ tags:
 categories:
   - python
 date: 2018-03-01 08:58:58
+updated: 2018-03-01 08:58:58
 ---
 
 ##### Enumerate()

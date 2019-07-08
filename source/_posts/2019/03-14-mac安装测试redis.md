@@ -5,6 +5,8 @@ tags:
 categories:
   - 数据库
 date: 2019-03-14 08:49:40
+updated: 2019-03-14 08:49:40
+
 ---
 ### Redis简介
 - Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。

@@ -6,6 +6,7 @@ tags:
 categories:
   - 系统命令
 date: 2018-02-06 20:08:03
+updated: 2018-02-06 20:08:03
 ---
 
 ### Ubuntu
