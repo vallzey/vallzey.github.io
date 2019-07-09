@@ -1,4 +1,3 @@
-
 ---
 title: 管理github的star项目
 tags:
@@ -6,11 +5,11 @@ tags:
 categories:
   - 开发
 date: 2018-02-04 20:04:18
-updated: 2018-02-04 20:04:18
+updated: 2019-04-18 20:04:18
+top: true
 ---
 
 # Github management
-> [[返回](../../../../README.md)]
 
 ---
 
@@ -105,7 +104,7 @@ updated: 2018-02-04 20:04:18
 * [[SPADE](https://github.com/NVlabs/SPADE)] 
   > 英伟达（NVIDIA）新开源的绘图工具。利用生成对抗网络，根据几根简单的线条就能生成栩栩如生的图像。
   
-  > ![SPADE](fig/SPADE.gif)
+  > ![SPADE](SPADE.gif)
 
 * [[awesome-scalability](https://github.com/binhnguyennus/awesome-scalability)]
   > 一个系统的阅读列表，描述了可扩展、高可用、高性能的大型系统背后的东西。每部分都是基于真实案例，讲述了如何搭建一个可扩展、高可用、高性能的大型系统，案例都是来自于经过数百万甚至数十亿用户实战检验的系统。对于所有工程师而言都是一个很好的学习资料，开卷有益。
@@ -140,7 +139,7 @@ updated: 2018-02-04 20:04:18
 * [[arc-theme](https://github.com/horst3180/arc-theme)]
   > Arc是一个平面主题，具有透明元素，适用于GTK 3，GTK 2和GNOME Shell，支持基于GTK 3和GTK 2的桌面环境，如GNOME，Unity，Budgie，Pantheon，Xfce，MATE等。(Ubuntu)
   
-  > ![SPADE](fig/arc_theme.png)
+  > ![SPADE](arc_theme.png)
 
 * [[vjtools]([test](https://github.com/vipshop/vjtools))]
   > vip.com的java编码标准，库和工具
@@ -184,7 +183,7 @@ updated: 2018-02-04 20:04:18
 * [[MyPerf4J](https://github.com/LinShunKang/MyPerf4J)]
   > 一个针对高并发、低延迟应用设计的高性能 Java 性能监控和统计工具。
   
-  > ![MyPerf4J](fig/MyPerf4J.gif)
+  > ![MyPerf4J](MyPerf4J.gif)
 
 * [[moco](https://github.com/dreamhead/moco)]
   > Moco是一个简单的安装存根框架。
@@ -198,7 +197,7 @@ updated: 2018-02-04 20:04:18
 * [[FeelUOwn](https://github.com/cosven/FeelUOwn)]
   > FeelUOwn 是一个符合 Unix 哲学的跨平台的音乐播放器，主要面向 Linux/macOS 用户。
   
-  > ![FeelUOwn](fig/FeelUOwn.png)
+  > ![FeelUOwn](FeelUOwn.png)
 
 * [[hue](https://github.com/cloudera/hue)]
   > Hue是一个开源SQL Workbench，用于在云/本地数据仓库中浏览，查询和可视化数据：gethue.com
@@ -240,7 +239,7 @@ updated: 2018-02-04 20:04:18
 * [[es6tutorial](https://github.com/ruanyf/es6tutorial)]
   > 《ECMAScript 6 入门》是一本开源的 JavaScript 语言教程，全面介绍 ECMAScript 6 新引入的语法特性。
   
-  >  ![es6tutorial](fig/es6tutorial.jpg)
+  >  ![es6tutorial](es6tutorial.jpg)
 
 * [[deeplearning_ai_books](https://github.com/fengdu78/deeplearning_ai_books)]
   > deeplearning.ai（吴恩达老师的深度学习课程笔记及资源）
