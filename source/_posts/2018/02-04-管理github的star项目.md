@@ -182,8 +182,7 @@ top: true
 
 * [[MyPerf4J](https://github.com/LinShunKang/MyPerf4J)]
   > 一个针对高并发、低延迟应用设计的高性能 Java 性能监控和统计工具。
-  
-  > ![MyPerf4J](MyPerf4J.gif)
+  {% asset_img MyPerf4J.gif MyPerf4J %}
 
 * [[moco](https://github.com/dreamhead/moco)]
   > Moco是一个简单的安装存根框架。
