@@ -31,6 +31,31 @@
     
     
     <entry>
+      <title>DataX实践</title>
+      <link href="/2019/07/20/DataX%E5%AE%9E%E8%B7%B5/"/>
+      <url>/2019/07/20/DataX%E5%AE%9E%E8%B7%B5/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="DataX的选型"><a href="#DataX的选型" class="headerlink" title="DataX的选型"></a>DataX的选型</h1><h2 id="一、需求"><a href="#一、需求" class="headerlink" title="一、需求"></a>一、需求</h2><blockquote><p><a href="https://www.jianshu.com/p/c789711dc2fe" target="_blank" rel="noopener">原文</a></p></blockquote><p>作为数据平台管理员，还希望收集到更多运行细节，方便日常维护：</p><p>统计信息采集，例如运行时间、数据量、消耗资源<br>脏数据校验和上报<br>希望运行日志能接入公司的日志平台，方便监控</p><h2 id="二、选型"><a href="#二、选型" class="headerlink" title="二、选型"></a>二、选型</h2><blockquote><p>对象主要是 DataX 和 Sqoop</p></blockquote><table><thead><tr><th>功能</th><th>DataX</th><th>Sqoop</th></tr></thead><tbody><tr><td>运行模式</td><td>单进程多线程</td><td>MapReduce</td></tr><tr><td>MySQL读写</td><td>单机压力大；读写粒度容易控制</td><td>MapReduce 模式重，写出错处理麻烦</td></tr><tr><td>Hive读写</td><td>单机压力大</td><td>扩展性好</td></tr><tr><td>文件格式</td><td>orc支持</td><td>orc不支持，可添加</td></tr><tr><td>分布式</td><td>不支持，可以通过调度系统规避</td><td>支持</td></tr><tr><td>流控</td><td>有流控功能</td><td>需要定制</td></tr><tr><td>统计信息</td><td>已有一些统计，上报需定制</td><td>没有，分布式的数据收集不方便</td></tr><tr><td>数据校验</td><td>在core部分有校验功能</td><td>没有，分布式的数据收集不方便</td></tr><tr><td>监控</td><td>需要定制</td><td>需要定制</td></tr><tr><td>社区</td><td>开源不久，社区不活跃</td><td>一直活跃，核心部分变动很少</td></tr></tbody></table><blockquote><p>DataX 主要的缺点在于单机运行，而这个可以通过调度系统规避，其他方面的功能均优于 Sqoop，最终我们选择了基于 DataX 开发。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大数据 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 大数据 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>高性能MySQL</title>
       <link href="/2019/07/07/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"/>
       <url>/2019/07/07/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/</url>
@@ -562,31 +587,6 @@
     
     
     <entry>
-      <title>DataX实践</title>
-      <link href="/2018/09/20/DataX%E5%AE%9E%E8%B7%B5/"/>
-      <url>/2018/09/20/DataX%E5%AE%9E%E8%B7%B5/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="DataX的选型"><a href="#DataX的选型" class="headerlink" title="DataX的选型"></a>DataX的选型</h1><h2 id="一、需求"><a href="#一、需求" class="headerlink" title="一、需求"></a>一、需求</h2><p>作为数据平台管理员，还希望收集到更多运行细节，方便日常维护：</p><p>统计信息采集，例如运行时间、数据量、消耗资源<br>脏数据校验和上报<br>希望运行日志能接入公司的日志平台，方便监控</p><h2 id="二、选型"><a href="#二、选型" class="headerlink" title="二、选型"></a>二、选型</h2><blockquote><p>对象主要是 DataX 和 Sqoop</p></blockquote><table><thead><tr><th>功能</th><th>DataX</th><th>Sqoop</th></tr></thead><tbody><tr><td>运行模式</td><td>单进程多线程</td><td>MapReduce</td></tr><tr><td>MySQL读写</td><td>单机压力大；读写粒度容易控制</td><td>MapReduce 模式重，写出错处理麻烦</td></tr><tr><td>Hive读写</td><td>单机压力大</td><td>扩展性好</td></tr><tr><td>文件格式</td><td>orc支持</td><td>orc不支持，可添加</td></tr><tr><td>分布式</td><td>不支持，可以通过调度系统规避</td><td>支持</td></tr><tr><td>流控</td><td>有流控功能</td><td>需要定制</td></tr><tr><td>统计信息</td><td>已有一些统计，上报需定制</td><td>没有，分布式的数据收集不方便</td></tr><tr><td>数据校验</td><td>在core部分有校验功能</td><td>没有，分布式的数据收集不方便</td></tr><tr><td>监控</td><td>需要定制</td><td>需要定制</td></tr><tr><td>社区</td><td>开源不久，社区不活跃</td><td>一直活跃，核心部分变动很少</td></tr></tbody></table><blockquote><p>DataX 主要的缺点在于单机运行，而这个可以通过调度系统规避，其他方面的功能均优于 Sqoop，最终我们选择了基于 DataX 开发。</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大数据 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 大数据 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>KylinApi使用</title>
       <link href="/2018/08/22/KylinApi%E4%BD%BF%E7%94%A8/"/>
       <url>/2018/08/22/KylinApi%E4%BD%BF%E7%94%A8/</url>
@@ -999,11 +999,11 @@
     
     
     <entry>
-      <title>c语言小笔记</title>
-      <link href="/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%B0%8F%E7%AC%94%E8%AE%B0/"/>
-      <url>/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%B0%8F%E7%AC%94%E8%AE%B0/</url>
+      <title>c语言内存分配</title>
+      <link href="/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"/>
+      <url>/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h5 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a>sizeof</h5><ul><li>用于计算一个变量或一个常量所占的字节数<blockquote><p>注意:sizeof是一运算符</p></blockquote></li></ul><h5 id="getchar"><a href="#getchar" class="headerlink" title="getchar"></a>getchar</h5><ul><li>专门的取字符函数,取一个字符</li></ul><h5 id="关于函数"><a href="#关于函数" class="headerlink" title="关于函数"></a>关于函数</h5><ul><li>是需要在使用前申明,写在main函数中也可以.</li><li>且默认返回值是int<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure></li></ul><h5 id="include后面的-lt-gt-和””区别"><a href="#include后面的-lt-gt-和””区别" class="headerlink" title="include后面的&lt;&gt;和””区别"></a>include后面的&lt;&gt;和””区别</h5><ul><li>如果使用&lt;&gt;表示先从开发工具的编译环境中去查找，然后再去系统的编译环境中去找</li><li>如果使用””表示现在当前文件夹下面去找，再从开发工具的编译环境中去查找，然后再去系统的编译环境中去找</li></ul><h5 id="h文件不参与编译"><a href="#h文件不参与编译" class="headerlink" title=".h文件不参与编译"></a>.h文件不参与编译</h5><h5 id="进制表示"><a href="#进制表示" class="headerlink" title="进制表示"></a>进制表示</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num2 = <span class="number">0b1100</span>;  <span class="comment">//表示2进制</span></span><br><span class="line"><span class="keyword">int</span> num8 = <span class="number">014</span>;     <span class="comment">//表示8进制</span></span><br><span class="line"><span class="keyword">int</span> num16 = <span class="number">0x12</span>;   <span class="comment">//表示16进制</span></span><br></pre></td></tr></table></figure><h5 id="进制输出"><a href="#进制输出" class="headerlink" title="进制输出"></a>进制输出</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(%o\n,num8);  <span class="comment">//表示8进制</span></span><br><span class="line"><span class="built_in">printf</span>(%x\n,num16); <span class="comment">//表示16进制</span></span><br></pre></td></tr></table></figure><h5 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h5><ul><li>数据以二进制的形式存在内存中</li><li>二进制分为：原码/反码/补码</li><li>最终存储在内存中的是补码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 9 </span><br><span class="line">// 原码/反码/补码</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1001</span><br><span class="line"></span><br><span class="line">// -9</span><br><span class="line">//原码  第一位为符号位</span><br><span class="line">1000 0000 0000 0000 0000 0000 0000 1001</span><br><span class="line">//反码  符号位不变，其他取反</span><br><span class="line">1111 1111 1111 1111 1111 1111 1111 0110</span><br><span class="line">//补码  反码加1</span><br><span class="line">1111 1111 1111 1111 1111 1111 1111 0111</span><br></pre></td></tr></table></figure></li></ul><h5 id="c语言规定字符串是由-0结尾"><a href="#c语言规定字符串是由-0结尾" class="headerlink" title="c语言规定字符串是由\0结尾"></a>c语言规定字符串是由\0结尾</h5><h5 id="结构体占用内存"><a href="#结构体占用内存" class="headerlink" title="结构体占用内存"></a>结构体占用内存</h5><ul><li>结构体占用内存是一定是最大占用属性的倍数</li><li>而且如果剩余内存不够，将从新分配最大占用属性大小的空间</li></ul>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h5 id="malloc-函数"><a href="#malloc-函数" class="headerlink" title="malloc 函数"></a>malloc 函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typename</span>* p = (<span class="keyword">typename</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">typename</span>))</span><br><span class="line"><span class="comment">// 释放内存</span></span><br><span class="line"><span class="built_in">free</span>(p)</span><br></pre></td></tr></table></figure><h6 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h6><blockquote><p>申请内存空间大小(即sizeof(typename))为malloc的参数,malloc会分配一个大小为sizeof(typename)的空间,并返回一个指针指向这个空间,这个指针的类为未确定类型(void<em>),所以要使用(typename</em>)强制转换.</p></blockquote><h5 id="new-函数"><a href="#new-函数" class="headerlink" title="new 函数"></a>new 函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typename</span>* p = <span class="keyword">new</span> <span class="keyword">typename</span>;</span><br><span class="line"><span class="comment">// 释放内存</span></span><br><span class="line"><span class="keyword">delete</span>(p)</span><br></pre></td></tr></table></figure><h6 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h6><blockquote><p>C++中用于申请动态空间.并返回对应类型的指针</p></blockquote>]]></content>
       
       
       <categories>
@@ -1024,11 +1024,11 @@
     
     
     <entry>
-      <title>c语言内存分配</title>
-      <link href="/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"/>
-      <url>/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/</url>
+      <title>c语言小笔记</title>
+      <link href="/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%B0%8F%E7%AC%94%E8%AE%B0/"/>
+      <url>/2018/03/04/c%E8%AF%AD%E8%A8%80%E5%B0%8F%E7%AC%94%E8%AE%B0/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h5 id="malloc-函数"><a href="#malloc-函数" class="headerlink" title="malloc 函数"></a>malloc 函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typename</span>* p = (<span class="keyword">typename</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">typename</span>))</span><br><span class="line"><span class="comment">// 释放内存</span></span><br><span class="line"><span class="built_in">free</span>(p)</span><br></pre></td></tr></table></figure><h6 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h6><blockquote><p>申请内存空间大小(即sizeof(typename))为malloc的参数,malloc会分配一个大小为sizeof(typename)的空间,并返回一个指针指向这个空间,这个指针的类为未确定类型(void<em>),所以要使用(typename</em>)强制转换.</p></blockquote><h5 id="new-函数"><a href="#new-函数" class="headerlink" title="new 函数"></a>new 函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typename</span>* p = <span class="keyword">new</span> <span class="keyword">typename</span>;</span><br><span class="line"><span class="comment">// 释放内存</span></span><br><span class="line"><span class="keyword">delete</span>(p)</span><br></pre></td></tr></table></figure><h6 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h6><blockquote><p>C++中用于申请动态空间.并返回对应类型的指针</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h5 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a>sizeof</h5><ul><li>用于计算一个变量或一个常量所占的字节数<blockquote><p>注意:sizeof是一运算符</p></blockquote></li></ul><h5 id="getchar"><a href="#getchar" class="headerlink" title="getchar"></a>getchar</h5><ul><li>专门的取字符函数,取一个字符</li></ul><h5 id="关于函数"><a href="#关于函数" class="headerlink" title="关于函数"></a>关于函数</h5><ul><li>是需要在使用前申明,写在main函数中也可以.</li><li>且默认返回值是int<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure></li></ul><h5 id="include后面的-lt-gt-和””区别"><a href="#include后面的-lt-gt-和””区别" class="headerlink" title="include后面的&lt;&gt;和””区别"></a>include后面的&lt;&gt;和””区别</h5><ul><li>如果使用&lt;&gt;表示先从开发工具的编译环境中去查找，然后再去系统的编译环境中去找</li><li>如果使用””表示现在当前文件夹下面去找，再从开发工具的编译环境中去查找，然后再去系统的编译环境中去找</li></ul><h5 id="h文件不参与编译"><a href="#h文件不参与编译" class="headerlink" title=".h文件不参与编译"></a>.h文件不参与编译</h5><h5 id="进制表示"><a href="#进制表示" class="headerlink" title="进制表示"></a>进制表示</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num2 = <span class="number">0b1100</span>;  <span class="comment">//表示2进制</span></span><br><span class="line"><span class="keyword">int</span> num8 = <span class="number">014</span>;     <span class="comment">//表示8进制</span></span><br><span class="line"><span class="keyword">int</span> num16 = <span class="number">0x12</span>;   <span class="comment">//表示16进制</span></span><br></pre></td></tr></table></figure><h5 id="进制输出"><a href="#进制输出" class="headerlink" title="进制输出"></a>进制输出</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(%o\n,num8);  <span class="comment">//表示8进制</span></span><br><span class="line"><span class="built_in">printf</span>(%x\n,num16); <span class="comment">//表示16进制</span></span><br></pre></td></tr></table></figure><h5 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h5><ul><li>数据以二进制的形式存在内存中</li><li>二进制分为：原码/反码/补码</li><li>最终存储在内存中的是补码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 9 </span><br><span class="line">// 原码/反码/补码</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 1001</span><br><span class="line"></span><br><span class="line">// -9</span><br><span class="line">//原码  第一位为符号位</span><br><span class="line">1000 0000 0000 0000 0000 0000 0000 1001</span><br><span class="line">//反码  符号位不变，其他取反</span><br><span class="line">1111 1111 1111 1111 1111 1111 1111 0110</span><br><span class="line">//补码  反码加1</span><br><span class="line">1111 1111 1111 1111 1111 1111 1111 0111</span><br></pre></td></tr></table></figure></li></ul><h5 id="c语言规定字符串是由-0结尾"><a href="#c语言规定字符串是由-0结尾" class="headerlink" title="c语言规定字符串是由\0结尾"></a>c语言规定字符串是由\0结尾</h5><h5 id="结构体占用内存"><a href="#结构体占用内存" class="headerlink" title="结构体占用内存"></a>结构体占用内存</h5><ul><li>结构体占用内存是一定是最大占用属性的倍数</li><li>而且如果剩余内存不够，将从新分配最大占用属性大小的空间</li></ul>]]></content>
       
       
       <categories>
