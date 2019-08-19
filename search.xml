@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>hbase总结</title>
+      <link href="/2019/08/19/hbase%E6%80%BB%E7%BB%93/"/>
+      <url>/2019/08/19/hbase%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="HBase总结"><a href="#HBase总结" class="headerlink" title="HBase总结"></a>HBase总结</h1><h2 id="HBase是什么"><a href="#HBase是什么" class="headerlink" title="HBase是什么"></a>HBase是什么</h2><ul><li>HBase（Hadoop Database）是一个基于HDFS的，面向列式存储的数据库，用来存储非结构化、半结构化数据。</li><li>HBASE是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统</li></ul><h2 id="Hbase的六大特点"><a href="#Hbase的六大特点" class="headerlink" title="Hbase的六大特点"></a>Hbase的六大特点</h2><ul><li>表很大：支持百万级别的列和十亿的行。</li><li>稀疏性</li><li>数据类型单一：只有字节数组Byte[]</li><li>数据多版本：每个单元中的数据可以有多个版本，默认情况下版本号自动分配，是单元格插入时的时间戳。</li><li>面向列式存储</li><li>无模式：每行都有一个可排序的主键和任意多的列，列可以根据需要动态增加，同一个表中的不同行的可以有截然不同的列</li></ul><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="HBase和Mysql的区别"><a href="#HBase和Mysql的区别" class="headerlink" title="HBase和Mysql的区别"></a>HBase和Mysql的区别</h3><table><thead><tr><th>MySQL</th><th>HBase</th></tr></thead><tbody><tr><td>关系型数据库</td><td>NoSql数据库</td></tr><tr><td>面向行</td><td>面向列</td></tr><tr><td>表不稀疏</td><td>表很稀疏</td></tr><tr><td>有很多的数据类型</td><td>数据类型只有字节数据Byte[]</td></tr><tr><td>表具有一定模式</td><td>表没有固定的模型，可以任意添加列</td></tr><tr><td>支持事务</td><td>不支持事务</td></tr><tr><td>支持索引</td><td>不支持索引</td></tr><tr><td>支持条件查询</td><td>不支持条件查询</td></tr><tr><td>具有各种函数和表连接操作</td><td>不支持函数和表连接</td></tr></tbody></table><h3 id="Hbase与Hive的对比"><a href="#Hbase与Hive的对比" class="headerlink" title="Hbase与Hive的对比"></a>Hbase与Hive的对比</h3><table><thead><tr><th>-</th><th>Hbase</th><th>Hive</th></tr></thead><tbody><tr><td>类型</td><td>列式存储数据库</td><td>数据仓库</td></tr><tr><td>内部机制</td><td>数据库引擎</td><td>MapReduce</td></tr><tr><td>增删改查</td><td>支持</td><td>默认不支持（需要开启事务）</td></tr><tr><td>Schema</td><td>只需要事先定义列簇</td><td>需要定义表格式</td></tr><tr><td>引用场景</td><td>实时分析</td><td>离线分析</td></tr><tr><td>特点</td><td>上文</td><td>类SQL</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大数据 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+            <tag> 大数据 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hadoop的调度器</title>
       <link href="/2019/08/02/Hadoop%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A8/"/>
       <url>/2019/08/02/Hadoop%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A8/</url>
@@ -961,9 +988,9 @@
       
         <tags>
             
-            <tag> 系统 </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> 系统 </tag>
             
         </tags>
       
