@@ -17,7 +17,9 @@
   runtime_unit: 'days'
 
   
-}</script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HBase总结"><span class="toc-number">1.</span> <span class="toc-text">HBase总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HBase是什么"><span class="toc-number">1.1.</span> <span class="toc-text">HBase是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hbase的六大特点"><span class="toc-number">1.2.</span> <span class="toc-text">Hbase的六大特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试题"><span class="toc-number">1.3.</span> <span class="toc-text">面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase和Mysql的区别"><span class="toc-number">1.3.1.</span> <span class="toc-text">HBase和Mysql的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase与Hive的对比"><span class="toc-number">1.3.2.</span> <span class="toc-text">Hbase与Hive的对比</span></a></li></ol></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/images/post.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">Vallzey的博客</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" data-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"><div class="mobile_author-info__description">这是Vallzey的个人博客</div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">hbase总结</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-08-19<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2019-08-20</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/大数据/">大数据</a></span><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">412</span><span class="post-meta__separator">|</span><span>Reading time: 1 min</span><span class="post-meta__separator">|</span><span>Post View: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="HBase总结"><a href="#HBase总结" class="headerlink" title="HBase总结"></a>HBase总结</h1><h2 id="HBase是什么"><a href="#HBase是什么" class="headerlink" title="HBase是什么"></a>HBase是什么</h2><ul>
+}</script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HBase总结"><span class="toc-number">1.</span> <span class="toc-text">HBase总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#结构图"><span class="toc-number">1.1.</span> <span class="toc-text">结构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HBase是什么"><span class="toc-number">1.2.</span> <span class="toc-text">HBase是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hbase的六大特点"><span class="toc-number">1.3.</span> <span class="toc-text">Hbase的六大特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试题"><span class="toc-number">1.4.</span> <span class="toc-text">面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase和Mysql的区别"><span class="toc-number">1.4.1.</span> <span class="toc-text">HBase和Mysql的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase与Hive的对比"><span class="toc-number">1.4.2.</span> <span class="toc-text">Hbase与Hive的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase的使用场景"><span class="toc-number">1.4.3.</span> <span class="toc-text">Hbase的使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase的rowkey设计原则"><span class="toc-number">1.4.4.</span> <span class="toc-text">Hbase的rowkey设计原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase的cell结构"><span class="toc-number">1.4.5.</span> <span class="toc-text">Hbase的cell结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase的读写流程（重点！！！）"><span class="toc-number">1.4.6.</span> <span class="toc-text">Hbase的读写流程（重点！！！）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HBase的读流程："><span class="toc-number">1.4.6.1.</span> <span class="toc-text">HBase的读流程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HBase的写流程："><span class="toc-number">1.4.6.2.</span> <span class="toc-text">HBase的写流程：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase的结构"><span class="toc-number">1.4.7.</span> <span class="toc-text">Hbase的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HMaster"><span class="toc-number">1.4.7.1.</span> <span class="toc-text">HMaster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HRegionServer"><span class="toc-number">1.4.7.2.</span> <span class="toc-text">HRegionServer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zookeeper"><span class="toc-number">1.4.7.3.</span> <span class="toc-text">Zookeeper</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase中的Compact机制"><span class="toc-number">1.4.8.</span> <span class="toc-text">Hbase中的Compact机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hbase中的优化"><span class="toc-number">1.4.9.</span> <span class="toc-text">Hbase中的优化</span></a></li></ol></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/images/post.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">Vallzey的博客</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" data-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"><div class="mobile_author-info__description">这是Vallzey的个人博客</div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">hbase总结</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-08-19<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2019-08-20</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/大数据/">大数据</a></span><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">2.3k</span><span class="post-meta__separator">|</span><span>Reading time: 7 min</span><span class="post-meta__separator">|</span><span>Post View: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="HBase总结"><a href="#HBase总结" class="headerlink" title="HBase总结"></a>HBase总结</h1><h2 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h2>
+
+<h2 id="HBase是什么"><a href="#HBase是什么" class="headerlink" title="HBase是什么"></a>HBase是什么</h2><ul>
 <li>HBase（Hadoop Database）是一个基于HDFS的，面向列式存储的数据库，用来存储非结构化、半结构化数据。</li>
 <li>HBASE是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统</li>
 </ul>
@@ -112,6 +114,110 @@
 <td>类SQL</td>
 </tr>
 </tbody></table>
+<h3 id="Hbase的使用场景"><a href="#Hbase的使用场景" class="headerlink" title="Hbase的使用场景"></a>Hbase的使用场景</h3><ul>
+<li>半结构化数据和非结构化数据，可以进行动态扩展。</li>
+<li>记录非常的稀疏。</li>
+<li>多版本数据。</li>
+<li>超大数据容量：HBase会自动水平切分扩展，跟Hadoop的无缝集成保证了其数据的可靠性和海量数据分析的高性能。</li>
+</ul>
+<h3 id="Hbase的rowkey设计原则"><a href="#Hbase的rowkey设计原则" class="headerlink" title="Hbase的rowkey设计原则"></a>Hbase的rowkey设计原则</h3><ul>
+<li><p>rowkey长度原则：rowkey是一个二进制流，长度开发者建议是10-100字节，不过建议越短越好，最好不超过16字节。数据持久化文件HFile中是按照按照key/value存储的，如果rowkey太长的话就会影响HFile的存储效率。Memstore将缓存数据到内存，如果rowkey字段过长内存的有效利用会降低，系统将会无法缓存更多的数据，降低检索的效率。</p>
+</li>
+<li><p>rowkey散列原则：如果rowkey是按照时间戳方式递增的话，不要将时间放在二进制码的前面，建议将rowkey的高位作为散列字段，如果没有散列字段就会出现一个regionServer上堆积的热点现象。</p>
+</li>
+<li><p>rowkey的唯一原则：rowkey不能为空且唯一。</p>
+</li>
+</ul>
+<h3 id="Hbase的cell结构"><a href="#Hbase的cell结构" class="headerlink" title="Hbase的cell结构"></a>Hbase的cell结构</h3><p>什么是Hbase中的cell：Hbase中通过row和columns确定一个存贮单元成为cell，cell由{rowkey， column（=&lt;列簇&gt; + &lt;列名&gt;，version）}构成。</p>
+<p>Hbase中表示行的集合，行是列族的集合，列族是列的集合，列是键值对的集合</p>
+<img src="/2019/08/19/hbase总结/Hbase表.png" title="Hbase表.png">
+
+<h3 id="Hbase的读写流程（重点！！！）"><a href="#Hbase的读写流程（重点！！！）" class="headerlink" title="Hbase的读写流程（重点！！！）"></a>Hbase的读写流程（重点！！！）</h3><h4 id="HBase的读流程："><a href="#HBase的读流程：" class="headerlink" title="HBase的读流程："></a>HBase的读流程：</h4><ol>
+<li>在HRegisonServer上存储着HBase的元数据（meta）信息和数据信息。首先cli先访问zk，访问ROOT表。在zk上获取元数据表所在的位置信息。找到这个meta表在哪个HRegionServer上面保存着。</li>
+<li>接着cli访问元数据所在的HRegionServer，获取元数据信息。</li>
+<li>通过元数据信息访问对应的数据所在的HRegionServer。</li>
+<li>然后扫描数据所在的HRegionServer的Memstore，然后再扫描StoreFile来查询数据。</li>
+<li>最后把HRegionServer把数据反馈给client。</li>
+</ol>
+<h4 id="HBase的写流程："><a href="#HBase的写流程：" class="headerlink" title="HBase的写流程："></a>HBase的写流程：</h4><ol>
+<li>在HRegisonServer上存储着HBase的元数据（meta）信息和数据信息。首先cli先访问zk，访问ROOT表。在zk上获取元数据表所在的位置信息。找到这个meta表在哪个HRegionServer上面保存着。</li>
+<li>确定当前要写入的HRegion和HRegionServer。</li>
+<li>clinet向HRegionServer发出写相应的请求，HRegionServer收到请求并响应。</li>
+<li>client现将数据写入在HLog，以防数据丢失。</li>
+<li>然后将数据写入到MemStore中。</li>
+<li>如果HLog和MemStore都写入成功了，那么表示这个条数据写入成功了。</li>
+<li>如果MemStore写入的数据达到了阈值，那么将会flush到StoreFile中。</li>
+<li>当StoreFile越来越多，会触发Compact合并操作，将过多的StoteFile合并成一个大的StoreFile。（默认好像是3个）</li>
+<li>当StoreFile越来越多时，Region也会越来越大，当达到阈值时，会触发spilit操作，将这个Region一分为二。（默认会越来越大，所以实现分区会更好）<blockquote>
+<p>HBase中所有的更新和删除操作都会在后续的compact中进行，使得用户的写操作只需要进入内存中就行了。实现了HBase的 I/O高性能。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="Hbase的结构"><a href="#Hbase的结构" class="headerlink" title="Hbase的结构"></a>Hbase的结构</h3><h4 id="HMaster"><a href="#HMaster" class="headerlink" title="HMaster"></a>HMaster</h4><ol>
+<li>为所有的RegionServer分配Region。</li>
+<li>负责RegionServer的负载均衡。</li>
+<li>发现失效的RegionServer并重新分配其上的Region。</li>
+<li>处理HDFS上的垃圾文件。</li>
+<li>处理Schema更新请求（表的创建，删除，修改，列族的增加等）。</li>
+</ol>
+<h4 id="HRegionServer"><a href="#HRegionServer" class="headerlink" title="HRegionServer"></a>HRegionServer</h4><ol>
+<li>HRegion</li>
+</ol>
+<p>简介：Table在行的方向上分隔为多个Region，Region是HBase中分布式存储和负载均衡的最小单元，即不同的Region可以分在不同的RegionServer上面，但同一个Region是不会拆分到多个Server上面的。随着数据的增多，某个列族的达到一个阈值就会分成两个新的Region。结构：&lt;表名，startRowkey，创建时间&gt;，由目录表（ROOT，META）记录该Region的endRowkey</p>
+<ol start="2">
+<li>Store</li>
+</ol>
+<p>简介：每一个Region由一个或则多个Store组成，至少是一个Store，HBase会把访问的数据存放在Store中，即每一个列族建一个Store，如果有多个ColumnFamily，就多多个Store，一个Store由一个MemStore和0或则多个StoreFile组成。HBase通过Store的大小判断是否需要切分Region。</p>
+<ol start="3">
+<li>MemStore</li>
+</ol>
+<p>它是放在内存中的，保存修改的数据，即key/values。当MemStore的大小达到一定的阈值的时候（默认128M），MemStore会被Flush到文件，即生成一个快照StoreFile，Flush过程由一个线程完成。</p>
+<ol start="4">
+<li>StoreFile</li>
+</ol>
+<p>StoreFile底层是HFile，HFile是Hadoop的二进制格式文件，</p>
+<ol start="5">
+<li>HLog</li>
+</ol>
+<p>WAL文件，用来灾难恢复使用，HLog记录数据的所有变更，一旦RegionServer宕机，就从HLog中进行恢复，HLog文件就是一个普通的Hadoop Sequence File，Sequence File记录了写入数据的归属信息，除了Table和Region名字外，还同时包括了Sequence Number和TimeStamp，Sequence File的value是HBase的key/value对象，即对应的HFile中的key/value。</p>
+<h4 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h4><ol>
+<li><p>保证任何时候集群中只有一个活跃的Master。</p>
+</li>
+<li><p>存储所有的Region的寻址入口，知道哪个Region在哪台机器上。</p>
+</li>
+<li><p>实时监控RegionServer的状态，将RegionServer的上下线的信息汇报给HMaster，RegionServer不直接向HMaster汇报信息，减轻HMaster的压力，而是通过向ZK发送信息。</p>
+</li>
+<li><p>存储HBase的元数据结构（schema），知道集群中有哪些Table，每个Table有哪些Column Family。</p>
+</li>
+</ol>
+<h3 id="Hbase中的Compact机制"><a href="#Hbase中的Compact机制" class="headerlink" title="Hbase中的Compact机制"></a>Hbase中的Compact机制</h3><ol>
+<li>当HBase中的memstore数据flush到磁盘的时候，就会形成一个storefile，当storefile的数量达到一定程度的时候，就需要将storefile文件进行compaction操作，Compact作用：合并文件、清楚过期，多余版本数据、提高读写效率。</li>
+</ol>
+<ol start="2">
+<li>compact操作的实现：①minor：Minor 操作只用来做部分文件的合并操作以及包括 minVersion=0 并且设置 ttl 的过期版本清理，不做任何删除数据、多版本数据的清理工作。②major：Major 操作是对 Region 下的HStore下的所有StoreFile执行合并操作，最终的结果是整理合并出一个文件。</li>
+</ol>
+<h3 id="Hbase中的优化"><a href="#Hbase中的优化" class="headerlink" title="Hbase中的优化"></a>Hbase中的优化</h3><ol>
+<li><p>增加RPC的数量。通过修改hbase-site.xml中的hbase.regionserver.handler.count属性可以适当的放大RPC数量，默认是10。</p>
+</li>
+<li><p><a href="https://blog.csdn.net/javajxz008/article/details/51913471" target="_blank" rel="noopener">预设分区</a>：<br>可以有效控制数据倾斜</p>
+</li>
+<li><p>其他优化方法：</p>
+</li>
+</ol>
+<ul>
+<li><ul>
+<li>减少调整：可以调整region和HFile。因为region的分裂会导致I/O开销，如果没有预设分区的话，随着region中条数的增，region会进行分裂，解决方法就是根据rowkey设计来进行预建分区，减少region的动态分裂。HFile会随着memstore进行刷新时生成一个HFile，当HFile增加到一定量的时候，会将属于一个region的HFile合并，HFile是不可避免的，但是如果HFile大于设置得值，就会导致HFile分裂，这样就会导致I/O的开销增大。</li>
+</ul>
+</li>
+<li><ul>
+<li>减少启停：对于HBase会有compact机制，会合并HFile，但是我们可以手动关闭compact，减少I/O。如果是批量数据的写入，我们可以用BulkLoad来批量插入数据。</li>
+</ul>
+</li>
+<li><ul>
+<li>合理设计：rowkey的设计：（散列性、简短性、唯一性、业务性），列族的设计：（多列族的优势是：在进行查表的时候，只需要扫描那一列就行了，就不需要全盘扫描，减少I/O，劣势是：降低了写的I/O，原因是：数据写到stroe以后会缓存到memstore中.）</li>
+</ul>
+</li>
+</ul>
 </div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Vallzey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://vallzey.github.io/2019/08/19/hbase总结/">https://vallzey.github.io/2019/08/19/hbase总结/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/随笔/">随笔    </a><a class="post-meta__tags" href="/tags/大数据/">大数据    </a></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2019/08/02/Hadoop的调度器/"><img class="next_cover lozad" data-src="/images/notebook.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>Hadoop的调度器</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span> Recommend</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/07/03/【工具篇】OpenJDK项目CodeTools/" title="【工具篇】OpenJDK项目CodeTools"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">【工具篇】OpenJDK项目CodeTools</div></a></div><div class="relatedPosts_item"><a href="/2019/04/10/强引用、软引用、弱引用、幻象引用/" title="强引用、软引用、弱引用、幻象引用"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">强引用、软引用、弱引用、幻象引用</div></a></div><div class="relatedPosts_item"><a href="/2019/04/10/理解Java的字符串，String、StringBufer、StringBuilder/" title="理解Java的字符串，String、StringBufer、StringBuilder"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">理解Java的字符串，String、StringBufer、StringBuilder</div></a></div><div class="relatedPosts_item"><a href="/2019/04/03/谈谈fnal、fnally、-fnalize有什么不同/" title="谈谈fnal、fnally、fnalize有什么不同"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">谈谈fnal、fnally、fnalize有什么不同</div></a></div><div class="relatedPosts_item"><a href="/2019/03/07/Java序列化/" title="Java序列化"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">Java序列化</div></a></div><div class="relatedPosts_item"><a href="/2019/02/07/【工具篇】javap命令/" title="【工具篇】javap命令"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">【工具篇】javap命令</div></a></div></div><div class="clear_both"></div></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By Vallzey</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://vallzey.github.io/">blog</a>!</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><i class="fa fa-book" id="readmode" title="Read Mode"> </i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion">简</a><i class="fa fa-moon-o nightshift" id="nightshift" title="Dark Mode"></i></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script async src="/js/search/local-search.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script src="/js/tw_cn.js"></script><script>translateInitilization()
 
 </script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
