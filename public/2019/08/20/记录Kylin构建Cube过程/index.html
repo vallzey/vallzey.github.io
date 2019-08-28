@@ -1,0 +1,134 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>记录Kylin构建Cube过程 | Vallzey的博客</title><meta name="description" content="记录Kylin构建Cube过程"><meta name="keywords" content="随笔"><meta name="author" content="Vallzey"><meta name="copyright" content="Vallzey"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="https://vallzey.github.io/2019/08/20/记录Kylin构建Cube过程/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="记录Kylin构建Cube过程"><meta name="twitter:description" content="记录Kylin构建Cube过程"><meta name="twitter:image" content="https://vallzey.github.io/images/avatar.png"><meta property="og:type" content="article"><meta property="og:title" content="记录Kylin构建Cube过程"><meta property="og:url" content="https://vallzey.github.io/2019/08/20/记录Kylin构建Cube过程/"><meta property="og:site_name" content="Vallzey的博客"><meta property="og:description" content="记录Kylin构建Cube过程"><meta property="og:image" content="https://vallzey.github.io/images/avatar.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="next" title="常见面试题" href="https://vallzey.github.io/2019/08/20/常见面试题/"><link rel="manifest" href="/img/pwa/manifest.json"><meta name="theme-color" content="#fff"><meta name="msapplication-TileColor" content="#fff"><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"cookieDomain":"https://vallzey.github.io/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'true',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Bookmark',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days'
+
+  
+}</script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kylin构建Cube过程"><span class="toc-number">1.</span> <span class="toc-text">Kylin构建Cube过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计Cube"><span class="toc-number">1.1.</span> <span class="toc-text">设计Cube</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#导入Hive表定义"><span class="toc-number">1.1.1.</span> <span class="toc-text">导入Hive表定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建数据模型"><span class="toc-number">1.1.2.</span> <span class="toc-text">创建数据模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建Cube"><span class="toc-number">1.2.</span> <span class="toc-text">构建Cube</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cube的构建"><span class="toc-number">1.2.1.</span> <span class="toc-text">Cube的构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据在Kylin中的存储（老是被问到，哈哈）"><span class="toc-number">1.3.</span> <span class="toc-text">数据在Kylin中的存储（老是被问到，哈哈）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建算法"><span class="toc-number">1.4.</span> <span class="toc-text">构建算法</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/images/post.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">Vallzey的博客</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" data-src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"><div class="mobile_author-info__description">这是Vallzey的个人博客</div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> Search</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">记录Kylin构建Cube过程</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2019-08-20<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2019-08-20</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/随笔/">随笔</a></span><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">1.3k</span><span class="post-meta__separator">|</span><span>Reading time: 4 min</span><span class="post-meta__separator">|</span><span>Post View: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="Kylin构建Cube过程"><a href="#Kylin构建Cube过程" class="headerlink" title="Kylin构建Cube过程"></a>Kylin构建Cube过程</h1><blockquote>
+<p>面试的时候遇到了类似的问题，但是没有很好的回答。当初也只是在使用的层面，没有好好理解，现在做笔记记录</p>
+</blockquote>
+<img src="/2019/08/20/记录Kylin构建Cube过程/kylin架构.jpeg" title="kylin架构.jpeg">
+
+<h2 id="设计Cube"><a href="#设计Cube" class="headerlink" title="设计Cube"></a>设计Cube</h2><p>如果数据已经在Hive中准备好了，那么就可以开始设计和创建Cube了</p>
+<h3 id="导入Hive表定义"><a href="#导入Hive表定义" class="headerlink" title="导入Hive表定义"></a>导入Hive表定义</h3><ul>
+<li>Kylin会使用Hive的API从Hive中获取表的属性 信息。</li>
+<li>Kylin会在后台触发一个MapReduce任务，计算此表每个列的 基数。（HyperLogLog算法）<h3 id="创建数据模型"><a href="#创建数据模型" class="headerlink" title="创建数据模型"></a>创建数据模型</h3></li>
+<li>有了表信息之后，就可以开始创建数据模型（Data Model）了。数据模 型是Cube的基础，它主要用于描述一个星形模型。</li>
+<li>选择一个事实表（必需的），然后添加 维度表（可选）</li>
+<li>添加维度表的时候，需要选择连接的类型：是Inner还是Left，然后选 择连接的主键和外键，这里也支持多主键</li>
+<li>选择度量列时，度量只能来自事实表</li>
+<li>过滤（Filter）条件是指，如果想把一些记录忽略掉，那么这里可以设 置一个过滤条件。Kylin在向Hive请求源数据的时候，会带上此过滤条件。</li>
+</ul>
+<h2 id="构建Cube"><a href="#构建Cube" class="headerlink" title="构建Cube"></a>构建Cube</h2><ul>
+<li>选择Cube的维度。</li>
+<li>创建度量。Kylin默认会创建一个Count（1）的度量。Kylin支持的度量有：SUM、MIN、 MAX、COUNT、COUNT DISTINCT、TOP_N、RAW等。</li>
+<li>选择需要的度量 类型，然后再选择适当的参数</li>
+<li>Kylin默认会把所有维度都放在同一个聚合组中；如果维度数较多（例 如&gt;10），建议将维度分为多个聚合组<blockquote>
+<p>可用于Kylin的构建优化：如果一个Cube有（M+N）个维度， 那么默认它会有$2^{m+n}$ 个Cuboid；如果把这些维度分为两个不相交的聚合 组，那么Cuboid的数量将被减少为$2^m +2^n$ </p>
+</blockquote>
+</li>
+<li>将过滤频率较高的 列放置在过滤频率较低的列之前，将基数高的列放置在基数低的列之 前。<blockquote>
+<p>可用于Kylin的查询优化：频率较高的 列放置在过滤频率较低的列之前，可以充分利用过滤条件来缩小在HBase中扫描的范围， 从而提高查询的效率。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Cube的构建"><a href="#Cube的构建" class="headerlink" title="Cube的构建"></a>Cube的构建</h3><p>包含如下步骤，由Kylin任务引擎来调度执行。</p>
+<p>1-5为计算Cube而做的准备工作</p>
+<ol>
+<li><p>创建临时的Hive平表（从Hive读取数据）。 </p>
+</li>
+<li><p>计算各维度的不同值，并收集各Cuboid的统计数据。 </p>
+</li>
+<li><p>创建并保存字典。</p>
+</li>
+<li><p>保存Cuboid统计信息。 </p>
+</li>
+<li><p>创建HTable。 </p>
+</li>
+<li><p>计算Cube（一轮或若干轮MapReduce）。是真正的Cube 计算，取决于所使用的Cube算法，它可能是一轮MapReduce任务，也可能 是N（在没有优化的情况下，N可以被视作是维度数）轮迭代的 MapReduce。</p>
+</li>
+<li><p>将Cube的计算结果转成HFile。将这些结果转换成 HFile（HBase文件存储格式）。</p>
+</li>
+<li><p>加载HFile到HBase。通过使用HBase BulkLoad工具，将 HFile导入进HBase集群，这一步完成之后，HTable就可以查询到数据了。</p>
+</li>
+<li><p>更新Cube元数据。将此次构建的Segment的状态从“NEW”更新 为“READY”，表示已经可供查询了；</p>
+</li>
+<li><p>垃圾回收。清理构建过程中生成的临 时文件等垃圾，释放集群资源。</p>
+</li>
+</ol>
+<h2 id="数据在Kylin中的存储（老是被问到，哈哈）"><a href="#数据在Kylin中的存储（老是被问到，哈哈）" class="headerlink" title="数据在Kylin中的存储（老是被问到，哈哈）"></a>数据在Kylin中的存储（老是被问到，哈哈）</h2><table>
+<thead>
+<tr>
+<th>*</th>
+<th>Row Key</th>
+<th>(维度选择)</th>
+<th>*</th>
+<th>-</th>
+<th>Metrics</th>
+<th>(指标)</th>
+<th>*</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>选择的维度为1</td>
+<td>D1</td>
+<td>D2</td>
+<td>D2</td>
+<td>-</td>
+<td>M1</td>
+<td>M2</td>
+<td>M3</td>
+</tr>
+<tr>
+<td>00010101</td>
+<td>a1</td>
+<td>c1</td>
+<td>e1</td>
+<td>-</td>
+<td>101</td>
+<td>201</td>
+<td>301</td>
+</tr>
+<tr>
+<td>00010101</td>
+<td>a2</td>
+<td>c2</td>
+<td>e2</td>
+<td>-</td>
+<td>200</td>
+<td>400</td>
+<td>600</td>
+</tr>
+</tbody></table>
+<ul>
+<li>在查询中被用作过滤条件的维度有可能放在其他维度的前面。 </li>
+<li>将经常出现在查询中的维度放在不经常出现的维度的前面。 ·</li>
+<li>对于基数较高的维度，如果查询会有这个维度上的过滤条件,那么 将它往前调整；如果没有，则向后调整。</li>
+</ul>
+<h2 id="构建算法"><a href="#构建算法" class="headerlink" title="构建算法"></a>构建算法</h2><ul>
+<li>layered cubing，也称逐层算法：它是逐层由底向上，把所有组合算完的过程。<img src="/2019/08/20/记录Kylin构建Cube过程/layeredcubing.jpeg" title="layeredcubing.jpeg">
+
+</li>
+</ul>
+<blockquote>
+<p>如图是一个四维Cube，有维度A、B、C、D；它会需要五轮的Map－Reduce来完成：第一轮MR的输入是源数据， 这一步会对维度列的值进行编码，并计算ABCD组合的结果。接下来的MR以上一轮的输出为输入，向上聚合计算三个维度的组合： ABC, BCD, ABD, 和ACD；依此类推，直到算出所有的维度组合。</p>
+</blockquote>
+<blockquote>
+<p>这个算法的优势是每一轮MR以上一轮的输出为结果，这样可以减少重复结算；当计算到后半程的时候，随着数据的减小，计算会越来越快 。 逐层Cube算法的主要优点是简单：Cube聚合的过程就是把要聚合掉的维度从key中减掉组成新的key交给Map-Reduce，由Map-Reduce框架对新key做排序和再聚合，计算结果写到HDFS。这个算法很好地利用了Map-Reduce框架。得益于Hadoop/Map－Reduce的成熟，此算法的稳定性已经非常高。</p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Vallzey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://vallzey.github.io/2019/08/20/记录Kylin构建Cube过程/">https://vallzey.github.io/2019/08/20/记录Kylin构建Cube过程/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/随笔/">随笔    </a></div><div class="post_share"><div class="social-share" data-image="/images/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2019/08/20/常见面试题/"><img class="next_cover lozad" data-src="/images/notebook.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>常见面试题</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span> Recommend</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/08/20/常见面试题/" title="常见面试题"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">常见面试题</div></a></div><div class="relatedPosts_item"><a href="/2019/08/20/hive总结/" title="hive总结"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">hive总结</div></a></div><div class="relatedPosts_item"><a href="/2019/08/19/hbase总结/" title="hbase总结"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">hbase总结</div></a></div><div class="relatedPosts_item"><a href="/2019/07/03/【工具篇】OpenJDK项目CodeTools/" title="【工具篇】OpenJDK项目CodeTools"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">【工具篇】OpenJDK项目CodeTools</div></a></div><div class="relatedPosts_item"><a href="/2019/04/10/强引用、软引用、弱引用、幻象引用/" title="强引用、软引用、弱引用、幻象引用"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">强引用、软引用、弱引用、幻象引用</div></a></div><div class="relatedPosts_item"><a href="/2019/04/10/理解Java的字符串，String、StringBufer、StringBuilder/" title="理解Java的字符串，String、StringBufer、StringBuilder"><img class="relatedPosts_cover lozad" data-src="/images/notebook.png"><div class="relatedPosts_title">理解Java的字符串，String、StringBufer、StringBuilder</div></a></div></div><div class="clear_both"></div></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By Vallzey</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://vallzey.github.io/">blog</a>!</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><i class="fa fa-book" id="readmode" title="Read Mode"> </i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion">简</a><i class="fa fa-moon-o nightshift" id="nightshift" title="Dark Mode"></i></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script async src="/js/search/local-search.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script src="/js/tw_cn.js"></script><script>translateInitilization()
+
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
